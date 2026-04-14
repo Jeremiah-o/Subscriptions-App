@@ -1,9 +1,9 @@
 import { View, Text, Image, Pressable } from 'react-native'
 import React from 'react'
-import { formatCurrency, formatSubscriptionDateTime } from '@/lib/util'
+import { formatCurrency, formatStatusLabel, formatSubscriptionDateTime } from '@/lib/util'
 import { clsx } from 'clsx'
 
-const SubscriptionCard = ({name,price, currency, icon,billing,color, category, plan, renewalDate, expanded,onPress}:SubscriptionCardProps) => {
+const SubscriptionCard = ({name,price, currency, icon,billing,color, category, plan, renewalDate, expanded, onPress, paymentMethod, startDate, status}:SubscriptionCardProps) => {
   return (
     <Pressable className={clsx('sub-card',expanded ? 'sub-card-expanded':'bg-card')} style={!expanded && color?{backgroundColor:color}:undefined} onPress={onPress}>
       <View className='sub-head'>
@@ -21,6 +21,42 @@ const SubscriptionCard = ({name,price, currency, icon,billing,color, category, p
             <Text className='sub-billing'>{billing}</Text>
         </View>
       </View>
+      {expanded && (
+        <View className='sub-bdy'>
+          <View className='sub-details'>
+            <View className='sub-row'>
+              <View className='sub-row-copy'>
+                <Text className='sub-label'>Payment:</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{paymentMethod ?.trim()}</Text>
+              </View>
+            </View>
+            <View className='sub-row'>
+              <View className='sub-row-copy'>
+                <Text className='sub-label'>Category:</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{category ?.trim() || plan ?.trim()}</Text>
+              </View>
+            </View>
+            <View className='sub-row'>
+              <View className='sub-row-copy'>
+                <Text className='sub-label'>Started:</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{startDate ? formatSubscriptionDateTime(startDate): ""}</Text>
+              </View>
+            </View>
+            <View className='sub-row'>
+              <View className='sub-row-copy'>
+                <Text className='sub-label'>Renewal date:</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{renewalDate ? formatSubscriptionDateTime(renewalDate): ""}</Text>
+              </View>
+            </View>
+            <View className='sub-row'>
+              <View className='sub-row-copy'>
+                <Text className='sub-label'>Status:</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{status ? formatStatusLabel(status): ""}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      )}
     </Pressable>
   )
 }
