@@ -27,31 +27,31 @@ const SubscriptionCard = ({name,price, currency, icon,billing,color, category, p
             <View className='sub-row'>
               <View className='sub-row-copy'>
                 <Text className='sub-label'>Payment:</Text>
-                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{paymentMethod ?.trim()}</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{paymentMethod ?.trim() ?? "Not Provided"}</Text>
               </View>
             </View>
             <View className='sub-row'>
               <View className='sub-row-copy'>
                 <Text className='sub-label'>Category:</Text>
-                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{category ?.trim() || plan ?.trim()}</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{(category ?.trim() || plan ?.trim()) ?? "Not Provided "}</Text>
               </View>
             </View>
             <View className='sub-row'>
               <View className='sub-row-copy'>
                 <Text className='sub-label'>Started:</Text>
-                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{startDate ? formatSubscriptionDateTime(startDate): ""}</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{startDate ? formatSubscriptionDateTime(startDate): "Not provided"}</Text>
               </View>
             </View>
             <View className='sub-row'>
               <View className='sub-row-copy'>
                 <Text className='sub-label'>Renewal date:</Text>
-                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{renewalDate ? formatSubscriptionDateTime(renewalDate): ""}</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{renewalDate ? formatSubscriptionDateTime(renewalDate): "Not provided"}</Text>
               </View>
             </View>
             <View className='sub-row'>
               <View className='sub-row-copy'>
                 <Text className='sub-label'>Status:</Text>
-                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{status ? formatStatusLabel(status): ""}</Text>
+                <Text numberOfLines={1} className='sub-value' ellipsizeMode='tail'>{status ? formatStatusLabel(status): "Not provided"}</Text>
               </View>
             </View>
           </View>
